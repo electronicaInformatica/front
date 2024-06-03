@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Use a minimal base image for the final production image
-FROM node:16-alpine
+FROM node:18-alpine
 
 # Set the working directory
 WORKDIR /app
