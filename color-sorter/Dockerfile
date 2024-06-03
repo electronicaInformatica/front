@@ -1,10 +1,32 @@
-FROM node:18.16-alpine as build
-RUN apk add --no-cache python3 py3-pip make gcc g++
+# Use a base image with Node.js installed
+FROM node:18-alpine AS builder
 
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy the rest of the application code
 COPY . .
 
-# Copia el resto de los archivos del proyecto
-COPY . .
+# Build the application (if needed, for example, if you have a build step)
+RUN npm run build
 
-# Construye la aplicación para producción
-RUN npm run dev
+# Use a minimal base image for the final production image
+FROM node:16-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy only the necessary files from the builder stage
+COPY --from=builder /app .
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Define the command to run the application
+CMD ["node", "server.js"]
