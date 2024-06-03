@@ -17,7 +17,9 @@
   color: black;
   font-size: 2rem;
   margin-top: 20px;
+  margin-bottom: 80px;
 }
+
 .inputContainer {
   margin-bottom: 20px;
   display: flex;
