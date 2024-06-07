@@ -57,9 +57,6 @@ const IndexPage: React.FC = () => {
                 <div className={styles.btns}>
                     <button className={styles.btn} onClick={handleStartClick} >Start</button>
                     <button className={styles.btn} onClick={handleStopClick}>Stop</button>
-                    <Link href={"/statistics"}>
-                        <button className={styles.btn} >Statistics</button>
-                    </Link>
                     <button className={styles.btn} onClick={fetchColors}>Load sorted</button>
                 </div>
                 <div className={styles.colorsContainer}>
