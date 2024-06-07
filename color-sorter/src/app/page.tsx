@@ -77,17 +77,17 @@ const IndexPage: React.FC = () => {
                         <button className={styles.btn} disabled={isLoading}>Statistics</button>
                     </Link>
                 </div>
-                {sortingId && (
-                    <div>
-                        <h3>Sorting ID: {sortingId}</h3>
-                        <h4>Colors:</h4>
-                        <ul>
-                            {Object.entries(colors).map(([color, count]) => (
-                                <li key={color}>{color}: {count}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+                {/*{sortingId && (*/}
+                {/*    <div>*/}
+                {/*        <h3>Sorting ID: {sortingId}</h3>*/}
+                {/*        <h4>Colors:</h4>*/}
+                {/*        <ul>*/}
+                {/*            {Object.entries(colors).map(([color, count]) => (*/}
+                {/*                <li key={color}>{color}: {count}</li>*/}
+                {/*            ))}*/}
+                {/*        </ul>*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </div>
         </div>
     );
