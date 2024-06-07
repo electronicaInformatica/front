@@ -56,20 +56,7 @@
   background-color: #7BDF7C;
 }
 
-.loadingContainer {
+.colorsContainer {
   margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.spinner {
-  font-size: 24px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  color: black;
 }
