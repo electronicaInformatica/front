@@ -59,3 +59,17 @@
   margin-top: 20px;
   color: #343a40;
 }
+
+.colorItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.colorLabel {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 3px;
+}

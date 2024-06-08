@@ -1,12 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './statistics.module.css';
-import '../app/globals.css'
+import '../app/globals.css';
 import Navbar from "@/components/Navbar";
-import {getAll, getColors, GetStatusesResponse} from "@/services";
+import { getAll, getColors, GetStatusesResponse } from "@/services";
+import Modal from 'react-modal';
+import {IoCloseSharp} from "react-icons/io5";
 
+Modal.setAppElement('#__next');
 
 const StatisticsPage: React.FC = () => {
     const [data, setData] = useState<GetStatusesResponse[]>([]);
+    const [colors, setColors] = useState<{ [key: string]: number }>({});
+    const [currentId, setCurrentId] = useState<string | null>(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             const allData = await getAll();
@@ -15,9 +22,6 @@ const StatisticsPage: React.FC = () => {
 
         fetchData();
     }, []);
-
-    const [colors, setColors] = useState<{ [key: string]: number }>({});
-    const [currentId, setCurrentId] = useState<string | null>(null);
 
     const formatDate = (timestamp: string): string => {
         const date = new Date(timestamp);
@@ -33,11 +37,18 @@ const StatisticsPage: React.FC = () => {
         const colorsData = await getColors(id);
         setColors(colorsData);
         setCurrentId(id);
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+        setColors({});
+        setCurrentId(null);
     };
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <div className={styles.container}>
                 <div className={styles.body}>
                     <h1 className={styles.h1}>Color Sorter - Statistics</h1>
@@ -65,19 +76,24 @@ const StatisticsPage: React.FC = () => {
                         ))}
                         </tbody>
                     </table>
-                    {currentId && (
-                        <div>
-                            <h2>Colors for ID: {currentId}</h2>
-                            <ul>
-                                {Object.entries(colors).map(([color, count]) => (
-                                    <li key={color} className={styles.colorItem}>
-                                        <span className={styles.colorLabel} style={{ backgroundColor: color }}></span>
-                                        {color}: {count}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        contentLabel="Colors Modal"
+                        className={styles.modal}
+                        overlayClassName={styles.overlay}
+                    >
+                        <h2 className={styles.modalTitle}>Colors for ID: {currentId}</h2>
+                        <button onClick={closeModal} className={styles.closeButton}><IoCloseSharp /></button>
+                        <ul>
+                            {Object.entries(colors).map(([color, count]) => (
+                                <li key={color} className={styles.colorItem}>
+                                    <span className={styles.colorLabel} style={{ backgroundColor: color }}></span>
+                                    {color}: {count}
+                                </li>
+                            ))}
+                        </ul>
+                    </Modal>
                 </div>
             </div>
         </div>

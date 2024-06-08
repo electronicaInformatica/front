@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styles from './page.module.css';
 import Navbar from "@/components/Navbar";
-import { startSorting, stopSorting, getColors } from '@/services';
+import { startSorting, getColors } from '@/services';
 
 const IndexPage: React.FC = () => {
     const [amountToBeSorted, setAmountToBeSorted] = useState<number>(0);
@@ -12,24 +12,9 @@ const IndexPage: React.FC = () => {
 
 
     const handleStartClick = async () => {
-
-        const data = {
-            sortingId: sortingId,
-            amountToBeSorted: amountToBeSorted
-        };
-
-        console.log('Data to send:', data);
-
         const response = await startSorting(amountToBeSorted);
         setSortingId(response.sortingId);
     };
-
-    const handleStopClick = async () => {
-        if (sortingId) {
-            await stopSorting(sortingId);
-            setSortingId('');
-        }
-    }
 
     const fetchColors = async () => {
         if (sortingId) {
@@ -54,8 +39,7 @@ const IndexPage: React.FC = () => {
                     />
                 </div>
                 <div className={styles.btns}>
-                <button className={styles.btn} onClick={handleStartClick}>Start</button>
-                    <button className={styles.btn} onClick={handleStopClick}>Stop</button>
+                    <button className={styles.btn} onClick={handleStartClick}>Start</button>
                     <button className={styles.btn} onClick={fetchColors}>Load sorted</button>
                 </div>
                 <div className={styles.colorsContainer}>
