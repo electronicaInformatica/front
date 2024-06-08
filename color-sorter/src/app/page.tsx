@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import styles from './page.module.css';
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { startSorting, stopSorting, getColors } from '@/services';
 
