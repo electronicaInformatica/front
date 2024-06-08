@@ -1,35 +1,31 @@
-/* styles/statistics.module.css */
 .container {
+  font-family: Arial, sans-serif;
   background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /*justify-content: center;*/
   height: 100vh;
 }
 
-.logo {
-  width: 200px;
-  height: auto;
-}
-
 .title {
-  color: black;
+  color: #343a40;
   font-size: 2rem;
-  margin-top: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
+  margin-top: 50px;
 }
 
 .inputContainer {
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .label {
-  margin-bottom: 8px;
   font-size: 16px;
   font-weight: bold;
+  color: #343a40;
+  margin-bottom: 15px;
 }
 
 .input {
@@ -37,12 +33,14 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: white;
+  color: #343a40;
 }
 
 .btns {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: center;
+  width: 50%;
   margin-top: 20px;
 }
 
@@ -53,10 +51,11 @@
   border: none;
   border-radius: 2rem;
   color: white;
-  background-color: #7BDF7C;
+  background-color: #9aa6eb;
+  margin-left: 50px;
 }
 
 .colorsContainer {
   margin-top: 20px;
-  color: black;
+  color: #343a40;
 }

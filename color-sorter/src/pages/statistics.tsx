@@ -34,55 +34,54 @@ const StatisticsPage: React.FC = () => {
         setColors(colorsData);
         setCurrentId(id);
     };
+
     return (
         <div>
             <Navbar/>
             <div className={styles.container}>
                 <div className={styles.body}>
-                        <h1 className={styles.h1}>Color Sorter - Statistics</h1>
-                        <table className={styles.table}>
-                            <thead>
-                            <tr className={styles.tr}>
-                                <th className={styles.th}>ID</th>
-                                <th className={styles.th}>Quantity to be sorted</th>
-                                <th className={styles.th}>Date</th>
-                                <th className={styles.th}>Time</th>
-                                <th className={styles.th}>Actions</th>
+                    <h1 className={styles.h1}>Color Sorter - Statistics</h1>
+                    <table className={styles.table}>
+                        <thead>
+                        <tr className={styles.tr}>
+                            <th className={styles.th}>ID</th>
+                            <th className={styles.th}>Quantity to be Sorted</th>
+                            <th className={styles.th}>Date</th>
+                            <th className={styles.th}>Time</th>
+                            <th className={styles.th}>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {data.map(item => (
+                            <tr key={item._id} className={styles.tr}>
+                                <td className={styles.td}>{item._id}</td>
+                                <td className={styles.td}>{item.amountToBeSorted}</td>
+                                <td className={styles.td}>{formatDate(item.timestamp)}</td>
+                                <td className={styles.td}>{formatTime(item.timestamp)}</td>
+                                <td className={styles.td}>
+                                    <button className={styles.btn} onClick={() => fetchColors(item._id)}>Load sorted</button>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            {data.map(item => (
-                                <tr key={item._id} className="tr">
-                                    <td className={styles.td}>{item._id}</td>
-                                    <td className={styles.td}>{item.amountToBeSorted}</td>
-                                    <td className={styles.td}>{formatDate(item.timestamp)}</td>
-                                    <td className={styles.td}>{formatTime(item.timestamp)}</td>
-                                    <td className={styles.td}>
-                                        <button className={styles.btn} onClick={() => fetchColors(item._id)}>Load
-                                            sorted
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
+                        ))}
+                        </tbody>
+                    </table>
                     {currentId && (
                         <div>
-                                <h2>Colors for ID: {currentId}</h2>
-                                <ul>
-                                    {Object.entries(colors).map(([color, count]) => (
-                                        <li key={color} className={styles.colorItem}>
-                                            <span className={styles.colorLabel} style={{ backgroundColor: color }}></span>
-                                            {color}: {count}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
+                            <h2>Colors for ID: {currentId}</h2>
+                            <ul>
+                                {Object.entries(colors).map(([color, count]) => (
+                                    <li key={color} className={styles.colorItem}>
+                                        <span className={styles.colorLabel} style={{ backgroundColor: color }}></span>
+                                        {color}: {count}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
 };
 
-export default StatisticsPage
+export default StatisticsPage;

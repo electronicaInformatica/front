@@ -43,9 +43,9 @@ const IndexPage: React.FC = () => {
         <div>
             <Navbar />
             <div className={styles.container}>
-                <h1 className={styles.title}>Color Sorter</h1>
                 <div className={styles.inputContainer}>
-                    <label htmlFor="rockletCount" className={styles.label}>Quantity of Rocklets:</label>
+                    <h1 className={styles.title}>Color Sorter</h1>
+                    <label htmlFor="rockletCount" className={styles.label}>Quantity to Sort:</label>
                     <input
                         type="number"
                         id="rockletCount"
@@ -55,7 +55,7 @@ const IndexPage: React.FC = () => {
                     />
                 </div>
                 <div className={styles.btns}>
-                    <button className={styles.btn} onClick={handleStartClick} >Start</button>
+                <button className={styles.btn} onClick={handleStartClick}>Start</button>
                     <button className={styles.btn} onClick={handleStopClick}>Stop</button>
                     <button className={styles.btn} onClick={fetchColors}>Load sorted</button>
                 </div>
